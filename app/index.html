@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Cover Studio — make your own GTA-style cover art</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h1>Neon Cover Studio</h1>
+    <p class="tagline">Your photo, your caption — a poster-style cover, made offline.</p>
+
+    <fieldset>
+      <legend>1 · Photo</legend>
+      <label class="file">Add your photo
+        <input id="photo" type="file" accept="image/*">
+      </label>
+      <p class="hint">Or drop a photo file onto the cover. Click a thumbnail to put it in the selected panel.</p>
+      <div id="samples" class="thumbs" role="group" aria-label="Photos"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>2 · Layout</legend>
+      <div class="row" role="group" aria-label="Layout">
+        <button type="button" data-layout="grid" class="active">Grid</button>
+        <button type="button" data-layout="hero">Hero</button>
+        <button type="button" data-layout="duo">Duo</button>
+        <button type="button" data-layout="triptych">Triptych</button>
+      </div>
+      <p id="panelLabel" class="hint">Panel 1 of 3 selected — drag on the cover to crop it, scroll to zoom.</p>
+      <label>Zoom
+        <input id="zoom" type="range" min="1" max="4" step="0.05" value="1">
+      </label>
+      <button id="resetCrop" type="button" class="ghost">Reset this panel's crop</button>
+    </fieldset>
+
+    <fieldset>
+      <legend>3 · Caption</legend>
+      <label>Title
+        <input id="title" type="text" maxlength="40" value="SUNSET HEIST">
+      </label>
+      <label>Subtitle
+        <input id="subtitle" type="text" maxlength="48" value="A NEON-CITY STORY">
+      </label>
+      <div class="row swatches" role="group" aria-label="Title colour">
+        <button type="button" data-color="#ffffff" class="swatch active" style="background:#ffffff" aria-label="White"></button>
+        <button type="button" data-color="#ffd319" class="swatch" style="background:#ffd319" aria-label="Yellow"></button>
+        <button type="button" data-color="#ff2975" class="swatch" style="background:#ff2975" aria-label="Pink"></button>
+        <button type="button" data-color="#2de2ff" class="swatch" style="background:#2de2ff" aria-label="Cyan"></button>
+        <button type="button" data-color="#7CFC66" class="swatch" style="background:#7CFC66" aria-label="Green"></button>
+      </div>
+      <label>Title position
+        <select id="titlePos">
+          <option value="bottom" selected>Bottom</option>
+          <option value="top">Top</option>
+        </select>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>4 · Colour grade</legend>
+      <div class="row" role="group" aria-label="Colour grade">
+        <button type="button" data-grade="sunset" class="active">Sunset Bay</button>
+        <button type="button" data-grade="neon">Neon Nights</button>
+        <button type="button" data-grade="pastel">Pastel Day</button>
+        <button type="button" data-grade="noir">Noir</button>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>5 · Export</legend>
+      <div class="row" role="group" aria-label="Export size">
+        <button type="button" data-size="1080x1080" class="active">1:1 · 1080²</button>
+        <button type="button" data-size="1080x1350">4:5 · 1080×1350</button>
+        <button type="button" data-size="1920x1080">16:9 · 1920×1080</button>
+      </div>
+      <button id="export" type="button" class="primary">Export PNG</button>
+      <p id="status" role="status"></p>
+    </fieldset>
+  </section>
+
+  <section id="stage" class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover"></canvas>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
